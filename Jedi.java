@@ -25,7 +25,7 @@ public class Jedi {
         return saberColor;
     }
 
-    public double getstrength() {
+    public double getStrength() {
         return strength;
     }
 
@@ -61,6 +61,9 @@ public class Jedi {
         if (multiplier > 0) {
             //По формулата за увеличаване на силата
             this.strength -= (multiplier * this.strength);
+            if (this.strength<0){
+                this.strength=0;
+            }
         }
         // Намаляваме ранга с едно ниво надолу, но не по-ниско от YOUNGLING
         if (this.rank.ordinal() > 0) {

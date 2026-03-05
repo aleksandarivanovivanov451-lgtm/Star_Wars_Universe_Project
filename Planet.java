@@ -1,11 +1,12 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Planet {
     private String name;
     private List<Jedi> jediList;
 
-    public Planet(String name, List<Jedi> jediList) {
+    public Planet(String name) {
         this.name = name;
         this.jediList = new ArrayList<>();
     }
@@ -39,6 +40,12 @@ public class Planet {
             if (current.getStrength() > strongest.getStrength()){
                 strongest=current;
             }
+            // Ако силите са еднакви, гледаме имената
+            else if (current.getStrength() == strongest.getStrength()) {
+                if (current.getName().compareToIgnoreCase(strongest.getName())<0){
+                    strongest=current;
+                }
+            }
         }
         return strongest;
 
@@ -68,7 +75,7 @@ public class Planet {
         return youngest;
 
     }
-    public String getMostUsedSaberColor(Rank targetRank) {
+    public String getMostUsedSaberColorForGrandMaster(Rank targetRank) {
         //  1. Събираме цветовете САМО на Grand Master-ите
         List<String> gmColors = new ArrayList<>();
         for (Jedi j : jediList) {
@@ -98,5 +105,52 @@ public class Planet {
 
         return mostUsed;
     }
+    public String getMostUsedSaberColor(Rank targetRank){
+        // 1. Събираме цветовете САМО на джедаите от подадения ранг
+        List<String> colorsAtRank = new ArrayList<>();
+        for (Jedi j: jediList){
+            if (j.getRank() == targetRank){
+                colorsAtRank.add(j.getSaberColor());
+            }
+        }
+// 2. Проверка: Ако няма джедаи от този ранг на планетата
+        if (colorsAtRank.isEmpty()){
+            return "На тази няма джедай с този ранг" + targetRank;
+        }
+// 3. Търсим най-често срещания цвят в този списък
+        String mostUsed = "";
+        int maxCount = 0;
+        for (String color: colorsAtRank){
+            int currentCount = 0;
+            for (String c : colorsAtRank){
+                if (c.equalsIgnoreCase(color)){
+                    currentCount++;
+                }
+            }
+            if (currentCount>maxCount){
+                maxCount=currentCount;
+                mostUsed=color;
+            }
+        }
+        return mostUsed;
+    }
+    
+
+    public void printPlanet(){
+        // 1. Извеждаме името на планетата
+        System.out.println("Planet" + this.name);
+// 2. Сортираме джедаите: първо по ранг (нарастващ), после по име (азбучен ред)
+        jediList.sort(Comparator.comparing(Jedi::getRank).thenComparing(Jedi::getName));
+// 3. Проверка и принтиране
+        if (jediList.isEmpty()){
+            System.out.println("Няма джедай на таизи планета");
+        }else {
+            for (Jedi j: jediList){
+                System.out.println(j);
+            }
+        }
+
+    }
+
 
 }
