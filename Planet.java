@@ -10,6 +10,15 @@ public class Planet {
         this.name = name;
         this.jediList = new ArrayList<>();
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Jedi> getJediList() {
+        return jediList;
+    }
+
     // Трябва ти метод за добавяне на джедай
     public void addJedi(Jedi jedi){
         jediList.add(jedi);
