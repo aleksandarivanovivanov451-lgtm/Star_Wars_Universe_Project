@@ -74,4 +74,15 @@ public class Jedi {
         }
 
     }
+
+    @Override
+    public String toString() {
+        return "Jedi{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", saberColor='" + saberColor + '\'' +
+                ", strength=" + strength +
+                ", rank=" + rank +
+                '}';
+    }
 }

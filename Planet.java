@@ -6,6 +6,9 @@ public class Planet {
     private String name;
     private List<Jedi> jediList;
 
+    public Planet(){
+        this.jediList = new ArrayList<>();
+    }
     public Planet(String name) {
         this.name = name;
         this.jediList = new ArrayList<>();
@@ -161,5 +164,8 @@ public class Planet {
 
     }
 
-
+    @Override
+    public String toString() {
+        return "Planet: " + name + " (Jedi count: " + jediList.size() + ")";
+    }
 }
