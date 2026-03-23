@@ -22,23 +22,21 @@ public class Planet {
         return jediList;
     }
 
-    // Трябва ти метод за добавяне на джедай
-    public void addJedi(Jedi jedi){
+    // метод за добавяне на джедай
+    public boolean addJedi(Jedi jedi){
         jediList.add(jedi);
+        return true;
     }
 
-    public void removeJedi(String jediName){
+
         //ФУнкция за премахване на Джедай по име
-        for (Jedi j : jediList){
-            if (j.getName().equalsIgnoreCase(jediName)){
-               jediList.remove(j);
-               System.out.println("Успешно премахна джедая:"+ jediName );
-               return;
+        public boolean removeJedi(String jediName) {
+            boolean removed = jediList.removeIf(j -> j.getName().equalsIgnoreCase(jediName));
+            if (!removed) {
+                throw new JediName("Не е намерен джедай с име: " + jediName);
             }
+            return true;
         }
-
-        throw new JediName("Не е намерен джедай с това име!");
-    }
 
     public Jedi getStrongestJedi(){
         // 1. Проверка дали списъкът е празен (за да не гръмне програмата)
@@ -87,81 +85,69 @@ public class Planet {
         return youngest;
 
     }
-    public String getMostUsedSaberColorForGrandMaster(Rank targetRank) {
-        //  1. Събираме цветовете САМО на Grand Master-ите
-        List<String> gmColors = new ArrayList<>();
-        for (Jedi j : jediList) {
-            if (j.getRank() == Rank.GRAND_MASTER) {
-                gmColors.add(j.getSaberColor());
-            }
-        }
-//  3. Проверка дали изобщо сме намерили такива
-        if (gmColors.isEmpty()) {
-            return "На тази планета няма Grand Master-и (съответно няма и техни цветове).";
-        }
-        //  4. Намираме най-честия цвят
-        String mostUsed = "";
-        int maxCount = 0;
-        for (String color : gmColors) {
-            int currentCount = 0;
-            for (String c : gmColors) {
-                if (c.equalsIgnoreCase(color)) {
-                    currentCount++;
-                }
-            }
-            if (currentCount > maxCount) {
-                maxCount = currentCount;
-                mostUsed = color;
-            }
-        }
+    // Просто пренасочваме към по-общата функция с нужния ранг(GRAND_MASTER))
+    public String getMostUsedSaberColorForGrandMaster() {
 
-        return mostUsed;
+        return getMostUsedSaberColor(Rank.GRAND_MASTER);
     }
-    public String getMostUsedSaberColor(Rank targetRank){
-        // 1. Събираме цветовете САМО на джедаите от подадения ранг
+    //най-честия цвят
+    public String getMostUsedSaberColor(Rank targetRank) {
+
         List<String> colorsAtRank = new ArrayList<>();
-        for (Jedi j: jediList){
-            if (j.getRank() == targetRank){
+        for (Jedi j : jediList) {
+            if (j.getRank() == targetRank) {
                 colorsAtRank.add(j.getSaberColor());
             }
         }
-// 2. Проверка: Ако няма джедаи от този ранг на планетата
-        if (colorsAtRank.isEmpty()){
-            return "На тази няма джедай с този ранг" + targetRank;
+
+
+        if (colorsAtRank.isEmpty()) {
+            throw new PlanetException("На планетата " + name + " няма джедаи с ранг " + targetRank);
         }
-// 3. Търсим най-често срещания цвят в този списък
+
+
         String mostUsed = "";
         int maxCount = 0;
-        for (String color: colorsAtRank){
+
+        for (String currentColor : colorsAtRank) {
             int currentCount = 0;
-            for (String c : colorsAtRank){
-                if (c.equalsIgnoreCase(color)){
+            for (String c : colorsAtRank) {
+                if (c.equalsIgnoreCase(currentColor)) {
                     currentCount++;
                 }
             }
-            if (currentCount>maxCount){
-                maxCount=currentCount;
-                mostUsed=color;
+
+
+            if (currentCount > maxCount) {
+                maxCount = currentCount;
+                mostUsed = currentColor;
+            } else if (currentCount == maxCount) {
+                if (currentColor.compareToIgnoreCase(mostUsed) < 0) {
+                    mostUsed = currentColor;
+                }
             }
         }
+
         return mostUsed;
     }
-    
 
-    public void printPlanet(){
-        // 1. Извеждаме името на планетата
-        System.out.println("Planet" + this.name);
-// 2. Сортираме джедаите: първо по ранг (нарастващ), после по име (азбучен ред)
-        jediList.sort(Comparator.comparing(Jedi::getRank).thenComparing(Jedi::getName));
-// 3. Проверка и принтиране
-        if (jediList.isEmpty()){
-            System.out.println("Няма джедай на таизи планета");
-        }else {
-            for (Jedi j: jediList){
-                System.out.println(j);
+
+    public String getPlanetInfo() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Planet: ").append(this.name).append("\n");
+
+        // Сортираме за изгледа
+        List<Jedi> sortedJedi = new ArrayList<>(jediList);
+        sortedJedi.sort(Comparator.comparing(Jedi::getRank).thenComparing(Jedi::getName));
+
+        if (sortedJedi.isEmpty()) {
+            sb.append("Няма джедаи на тази планета.");
+        } else {
+            for (Jedi j : sortedJedi) {
+                sb.append(j.toString()).append("\n");
             }
         }
-
+        return sb.toString();
     }
 
     @Override

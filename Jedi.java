@@ -48,7 +48,7 @@ public class Jedi {
         if (this.rank.ordinal() < ranks.length - 1){
             this.rank = ranks[this.rank.ordinal()+1];
         }else {
-            System.out.println(name + " вече е на максимален ранг!");
+            throw new JediException(name + " вече е на максимален ранг (GRAND_MASTER)!");
         }
 
     }
@@ -70,7 +70,7 @@ public class Jedi {
             Rank[] ranks = Rank.values();
             this.rank = ranks[this.rank.ordinal() - 1];
         }else {
-            System.out.println(name + " вече е на най-ниския ранг!");
+            throw new JediException("Джедая: " + name + " вече е най ниския  ранг ");
         }
 
     }
