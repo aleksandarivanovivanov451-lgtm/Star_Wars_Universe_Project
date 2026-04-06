@@ -1,3 +1,6 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -18,33 +21,35 @@ public class Universe {
     }
 
     // Метод за командата CLOSE
-    public void close(){
+    public void close() {
         planets.clear();
         currentFilePath = null;
         isFileOpened = false;
     }
-    public boolean isFileOpened(){
+
+    public boolean isFileOpened() {
         return isFileOpened;
     }
 
-    public void setFileOpened(boolean opened, String path){
+    public void setFileOpened(boolean opened, String path) {
         this.isFileOpened = opened;
         this.currentFilePath = path;
     }
 
-    public String getCurrentFilePath(){
+    public String getCurrentFilePath() {
         return currentFilePath;
     }
 
     // 1. Помощен метод за намиране на обект Planet по име
-    public Planet findPlanet(String name){
-        for (Planet p: planets){
-            if (p.getName().equalsIgnoreCase(name)){
+    public Planet findPlanet(String name) {
+        for (Planet p : planets) {
+            if (p.getName().equalsIgnoreCase(name)) {
                 return p;
             }
         }
         return null;
     }
+
     // 2. Метод за добавяне на планета (Команда: add_planet)
     public boolean addPlanet(String name) {
         if (findPlanet(name) != null) {
@@ -54,30 +59,32 @@ public class Universe {
         planets.add(new Planet(name));
         return true;
     }
+
     // 3. Проверка дали името на джедай е уникално в цялата вселена
-    public boolean isJediNameUnique(String name){
-        for (Planet p: planets){
-            for (Jedi j: p.getJediList()){
-                if (j.getName().equalsIgnoreCase(name)){
+    public boolean isJediNameUnique(String name) {
+        for (Planet p : planets) {
+            for (Jedi j : p.getJediList()) {
+                if (j.getName().equalsIgnoreCase(name)) {
                     return false;
                 }
             }
         }
         return true;
     }
+
     // 4. Глобално принтиране на джедай
-    public String printJedi(String name){
-       for (Planet p: planets){
-           for (Jedi j : p.getJediList()){
-               if (j.getName().equalsIgnoreCase(name)){
-                   return j.toString() + " | Обитава планета: " + p.getName();
+    public String printJedi(String name) {
+        for (Planet p : planets) {
+            for (Jedi j : p.getJediList()) {
+                if (j.getName().equalsIgnoreCase(name)) {
+                    return j.toString() + " | Обитава планета: " + p.getName();
 
-               }
-           }
-       }
+                }
+            }
+        }
 
-          throw new JediException("Джедай с име " + name + " не е намерен.");
-       }
+        throw new JediException("Джедай с име " + name + " не е намерен.");
+    }
 
     // 5. Обединяване на планети
     public List<Jedi> mergePlanet(String name1, String name2) throws JediException {
@@ -99,6 +106,14 @@ public class Universe {
 
         return combinedList;
     }
+    public void saveData(String path) throws IOException {
+        FileHandler.save(path, this.planets);
+    }
 
-
+    public void loadData(String path) throws IOException {
+        this.planets.clear();
+        FileHandler.load(path, this);
+    }
 }
+
+

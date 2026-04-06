@@ -80,9 +80,9 @@ public class Jedi {
         return "Jedi{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
-                ", saberColor='" + saberColor + '\'' +
+                ", saberColor='" + rank + '\'' +
                 ", strength=" + strength +
-                ", rank=" + rank +
+                ", rank=" + saberColor +
                 '}';
     }
 }
