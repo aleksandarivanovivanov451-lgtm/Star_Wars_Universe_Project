@@ -37,7 +37,7 @@ public class Planet {
             }
             return true;
         }
-
+//функция за намиране на най силния джедай на конкретна планета
     public Jedi getStrongestJedi(){
         // 1. Проверка дали списъкът е празен (за да не гръмне програмата)
         if (jediList.isEmpty()){
@@ -60,7 +60,7 @@ public class Planet {
         return strongest;
 
     }
-
+//функция за намиоране на най младия джедай от даден ранк
     public Jedi getYoungestJedi(Rank targetRank){
         Jedi youngest = null;
         for (Jedi j : jediList){
@@ -90,7 +90,7 @@ public class Planet {
 
         return getMostUsedSaberColor(Rank.GRAND_MASTER);
     }
-    //най-честия цвят
+    //най-честия цвят от даден ранг
     public String getMostUsedSaberColor(Rank targetRank) {
 
         List<String> colorsAtRank = new ArrayList<>();
@@ -131,7 +131,7 @@ public class Planet {
         return mostUsed;
     }
 
-
+//взимаме информацията за въведената планета планета
     public String getPlanetInfo() {
         StringBuilder sb = new StringBuilder();
         sb.append("Planet: ").append(this.name).append("\n");

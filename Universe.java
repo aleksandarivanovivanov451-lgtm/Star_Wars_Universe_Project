@@ -40,7 +40,7 @@ public class Universe {
         return currentFilePath;
     }
 
-    // 1. Помощен метод за намиране на обект Planet по име
+    //  Помощен метод за намиране на обект Planet по име
     public Planet findPlanet(String name) {
         for (Planet p : planets) {
             if (p.getName().equalsIgnoreCase(name)) {
@@ -50,7 +50,7 @@ public class Universe {
         return null;
     }
 
-    // 2. Метод за добавяне на планета (Команда: add_planet)
+    //  Метод за добавяне на планета
     public boolean addPlanet(String name) {
         if (findPlanet(name) != null) {
 
@@ -60,7 +60,7 @@ public class Universe {
         return true;
     }
 
-    // 3. Проверка дали името на джедай е уникално в цялата вселена
+    //  Проверка дали името на джедай е уникално в цялата вселена
     public boolean isJediNameUnique(String name) {
         for (Planet p : planets) {
             for (Jedi j : p.getJediList()) {
@@ -72,7 +72,7 @@ public class Universe {
         return true;
     }
 
-    // 4. Глобално принтиране на джедай
+    //  Глобално принтиране на джедай
     public String printJedi(String name) {
         for (Planet p : planets) {
             for (Jedi j : p.getJediList()) {
@@ -86,7 +86,7 @@ public class Universe {
         throw new JediException("Джедай с име " + name + " не е намерен.");
     }
 
-    // 5. Обединяване на планети
+    //  Обединяване на планети
     public List<Jedi> mergePlanet(String name1, String name2) throws JediException {
         Planet p1 = findPlanet(name1);
         Planet p2 = findPlanet(name2);
@@ -106,6 +106,7 @@ public class Universe {
 
         return combinedList;
     }
+
     public void saveData(String path) throws IOException {
         FileHandler.save(path, this.planets);
     }

@@ -4,6 +4,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class FileHandler {
+    //функция за записване на информацията  в отворения  файл
     public static void save(String path, List<Planet> planets) throws IOException {
         StringBuilder sb = new StringBuilder();
         for (Planet p : planets) {
@@ -19,7 +20,7 @@ public class FileHandler {
         }
         Files.writeString(Paths.get(path), sb.toString());
     }
-
+    //функция за четене на информацията  от  отворения  файл
     public static void load(String path, Universe universe) throws IOException {
         List<String> lines = Files.readAllLines(Paths.get(path));
         Planet lastPlanet = null;

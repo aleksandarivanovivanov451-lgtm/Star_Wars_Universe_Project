@@ -52,6 +52,7 @@ public class Jedi {
         }
 
     }
+    //функция за понижаване на ранг на джадай
     public void demote(double multiplier){
         //проверка за multiplier
         if (multiplier <= 0 ){
