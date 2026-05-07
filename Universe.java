@@ -20,7 +20,7 @@ public class Universe {
         return planets;
     }
 
-    // Метод за командата CLOSE
+    // Метод за командата затваряне
     public void close() {
         planets.clear();
         currentFilePath = null;

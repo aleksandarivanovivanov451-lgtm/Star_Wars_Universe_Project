@@ -1,8 +1,8 @@
 public class AddPlanetCommand implements Command {
     @Override
-    public void execute(String[] tokens, Universe universe) throws Exception {
+    public String execute(String[] tokens, Universe universe) throws Exception {
         if (tokens.length<2)throw new Exception("Usage: add_planet <name>");
         universe.addPlanet(tokens[1]);
-        System.out.println("Planet " + tokens[1] + " added successfully.");
+        return "Planet " + tokens[1] + " added successfully.";
     }
 }

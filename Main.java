@@ -39,12 +39,14 @@ public class Main {
             String input = scanner.nextLine().trim();
 
             if (input.isEmpty()) continue;
+
+            // Твоята проверка за EXIT
             if (input.equalsIgnoreCase("exit")) {
                 System.out.println("Exiting... May the Force be with you!");
                 break;
             }
 
-            // Нарязваме командата на парчета (tokens)
+            // Нарязваме командата на части (tokens)
             String[] tokens = input.split("\\s+");
             String commandName = tokens[0].toLowerCase();
 
@@ -53,16 +55,21 @@ public class Main {
 
             if (cmd != null) {
                 try {
-                    // Проверка дали файлът е отворен (освен за 'open' и 'help')
+                    // Проверка за отворен файл (освен за 'open' и 'help')
                     if (!universe.isFileOpened() && !commandName.equals("open") && !commandName.equals("help")) {
                         System.out.println("Error: Please open a file first using the 'open' command.");
                         continue;
                     }
 
-                    //  Тук се вика execute на съответния клас
-                    cmd.execute(tokens, universe);
+                    // ТУК Е ВАЖНОТО: Викаме execute и ПРИНТИРАМЕ String резултата
+                    String result = cmd.execute(tokens, universe);
+
+                    if (result != null) {
+                        System.out.println(result);
+                    }
 
                 } catch (Exception e) {
+                    // Тук се принтират съобщенията от JediException, PlanetException и т.н.
                     System.out.println("Error: " + e.getMessage());
                 }
             } else {

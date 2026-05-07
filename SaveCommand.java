@@ -1,7 +1,8 @@
 public class SaveCommand implements Command {
     @Override
-    public void execute(String[] tokens, Universe universe) throws Exception {
+    public String execute(String[] tokens, Universe universe) throws Exception {
+        if (!universe.isFileOpened()) throw new Exception("No file is currently open.");
         universe.saveData(universe.getCurrentFilePath());
-        System.out.println("Successfully saved to " + universe.getCurrentFilePath());
+        return "Successfully saved to " + universe.getCurrentFilePath();
     }
 }

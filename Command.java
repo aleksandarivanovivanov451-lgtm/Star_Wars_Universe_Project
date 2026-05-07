@@ -1,4 +1,4 @@
 public interface Command {
-    void  execute (String[] tokens, Universe universe)throws  Exception;
+    String  execute (String[] tokens, Universe universe)throws  Exception;
 
 }
