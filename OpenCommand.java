@@ -1,4 +1,5 @@
 public class OpenCommand implements Command {
+    //команда за отваряне на файл
     @Override
     public String execute(String[] tokens, Universe universe) throws Exception {
         if (tokens.length < 2) throw new Exception("Usage: open <file_path>");

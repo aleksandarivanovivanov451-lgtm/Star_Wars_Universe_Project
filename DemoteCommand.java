@@ -1,4 +1,5 @@
 public class DemoteCommand implements Command {
+    //команда за сваляне на ранг
     @Override
     public String execute(String[] tokens, Universe universe) throws Exception {
         if (tokens.length < 3) throw new Exception("Usage: demote <jedi_name> <multiplier>");

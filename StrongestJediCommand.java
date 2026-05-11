@@ -1,4 +1,5 @@
 public class StrongestJediCommand implements Command {
+    //команда за най силния джедай
     @Override
     public String execute(String[] tokens, Universe universe) throws Exception {
         if (tokens.length < 2) throw new Exception("Usage: get_strongest_jedi <planet>");

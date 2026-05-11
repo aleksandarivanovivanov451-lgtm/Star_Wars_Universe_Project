@@ -1,4 +1,5 @@
 public class SaberColorCommand implements Command {
+    //команда за най изпозван цвят сред даден ранг
     @Override
     public String execute(String[] tokens, Universe universe) throws Exception {
         if (tokens.length < 3) throw new Exception("Usage: get_most_used_saber_color <planet_name> <rank>");

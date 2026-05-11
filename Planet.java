@@ -3,8 +3,8 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Planet {
-    private String name;
-    private List<Jedi> jediList;
+    private String name;//име на планетата
+    private List<Jedi> jediList;// лист от всички джедай на планетата
 
     public Planet(){
         this.jediList = new ArrayList<>();
@@ -13,11 +13,11 @@ public class Planet {
         this.name = name;
         this.jediList = new ArrayList<>();
     }
-
+    // гетър за име на планетата
     public String getName() {
         return name;
     }
-
+    // гетър за листа с джедай на планетата
     public List<Jedi> getJediList() {
         return jediList;
     }

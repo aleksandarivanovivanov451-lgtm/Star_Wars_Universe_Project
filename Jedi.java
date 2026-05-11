@@ -1,9 +1,9 @@
 public class Jedi {
-    private  String name;
-    private int age;
-    private String saberColor;
-    private double strength;
-    private Rank rank;
+    private  String name;// име на джедая
+    private int age;// години на джедая
+    private String saberColor;// цвят на меча
+    private double strength;// сила на джедая
+    private Rank rank;// ранг на джедая
 
     public Jedi(String name, int age, String saberColor, double strength, Rank rank) {
         this.name = name;
@@ -12,23 +12,23 @@ public class Jedi {
         this.strength = strength;
         this.rank = rank;
     }
-
+// гетър за име
     public String getName() {
         return name;
     }
-
+    // гетър за име
     public int getAge() {
         return age;
     }
-
+    // гетър за години
     public String getSaberColor() {
         return saberColor;
     }
-
+    // гетър за цвят на меча
     public double getStrength() {
         return strength;
     }
-
+    // гетър за сила
     public Rank getRank() {
         return rank;
     }

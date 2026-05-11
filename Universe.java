@@ -6,16 +6,16 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Universe {
-    private List<Planet> planets;
-    private String currentFilePath;
-    private boolean isFileOpened;
+    private List<Planet> planets;//лист от планети
+    private String currentFilePath; // път на файл
+    private boolean isFileOpened;// флаг дали е отворен файла
 
     public Universe() {
         this.planets = new ArrayList<>();
         this.currentFilePath = null;
         this.isFileOpened = false;
     }
-
+    // гетър за планетите
     public List<Planet> getPlanets() {
         return planets;
     }
@@ -26,7 +26,7 @@ public class Universe {
         currentFilePath = null;
         isFileOpened = false;
     }
-
+    // гетър за име
     public boolean isFileOpened() {
         return isFileOpened;
     }

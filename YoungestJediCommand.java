@@ -1,4 +1,5 @@
 public class YoungestJediCommand implements Command {
+    //команда за най младия джедай
     @Override
     public String execute(String[] tokens, Universe universe) throws Exception {
         if (tokens.length < 3) throw new Exception("Usage: get_youngest_jedi <planet_name> <rank>");

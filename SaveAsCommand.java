@@ -1,4 +1,5 @@
 public class SaveAsCommand implements Command {
+    //команда за запазване на файл
     @Override
     public String execute(String[] tokens, Universe universe) throws Exception {
         if (tokens.length < 2) throw new Exception("Usage: saveas <file_path>");

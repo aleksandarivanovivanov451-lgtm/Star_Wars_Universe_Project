@@ -1,4 +1,5 @@
 public class RemoveJediCommand implements Command {
+    //команда за премахване на джедай
     @Override
     public String execute(String[] tokens, Universe universe) throws Exception {
         if (tokens.length < 3) throw new Exception("Usage: remove_jedi <jedi_name> <planet_name>");

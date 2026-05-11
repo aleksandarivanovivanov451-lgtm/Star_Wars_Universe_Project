@@ -1,4 +1,5 @@
 public class HelpCommand implements Command {
+    //команда за помощ
     @Override
     public String execute(String[] tokens, Universe universe) {
         return "Commands: open, close, save, saveas, add_planet, " +

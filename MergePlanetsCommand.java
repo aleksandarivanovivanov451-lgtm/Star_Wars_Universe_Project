@@ -1,6 +1,7 @@
 import java.util.List;
 
 public class MergePlanetsCommand implements Command {
+    //команда за обединяане на планети
     @Override
     public String execute(String[] tokens, Universe universe) throws Exception {
         if (tokens.length < 3) throw new Exception("Usage: merge_planets <p1> <p2>");
@@ -10,3 +11,4 @@ public class MergePlanetsCommand implements Command {
         return sb.toString();
     }
 }
+

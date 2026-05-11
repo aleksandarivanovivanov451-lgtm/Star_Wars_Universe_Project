@@ -1,4 +1,5 @@
 public class AddPlanetCommand implements Command {
+    //команда за добавяне на планета
     @Override
     public String execute(String[] tokens, Universe universe) throws Exception {
         if (tokens.length<2)throw new Exception("Usage: add_planet <name>");

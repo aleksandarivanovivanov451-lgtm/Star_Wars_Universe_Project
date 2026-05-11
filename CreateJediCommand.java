@@ -1,4 +1,5 @@
 public class CreateJediCommand implements Command {
+    //команда за създаване на джедай
     @Override
     public String execute(String[] tokens, Universe universe) throws Exception {
         if (tokens.length < 7) throw new Exception("Usage: create_jedi <planet> <name> <age> <saber_color> <power> <rank>");

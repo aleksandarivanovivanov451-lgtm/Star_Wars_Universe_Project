@@ -1,4 +1,5 @@
 public class PrintCommand implements Command {
+    //команда за принтиране на планети
     @Override
     public String execute(String[] tokens, Universe universe) throws Exception {
         if (tokens.length < 2) throw new Exception("Usage: print <planet_name>");

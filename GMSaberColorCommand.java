@@ -1,4 +1,5 @@
 public class GMSaberColorCommand implements Command {
+    //команда за най изпозван цвят сред гранд мастарите
     @Override
     public String execute(String[] tokens, Universe universe) throws Exception {
         if (tokens.length < 2) throw new Exception("Usage: get_most_used_saber_color_grandmaster <planet_name>");

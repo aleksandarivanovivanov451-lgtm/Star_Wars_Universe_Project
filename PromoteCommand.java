@@ -1,4 +1,5 @@
 public class PromoteCommand implements Command{
+
     @Override
     public String execute(String[] tokens, Universe universe) throws Exception {
         if (tokens.length < 3) throw new Exception("Usage: promote <jedi_name> <multiplier>");
